@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { createNewNote, getAllAnecdotes } from "../services/anecdotes"
+import { castVoteService, createNewNote, getAllAnecdotes } from "../services/anecdotes"
 
 const initialState = []
 
@@ -7,7 +7,7 @@ const blogSlice = createSlice({
   name: 'blogs',
   initialState,
   reducers: {
-    castVote(state, action) {
+    upvote(state, action) {
       const index = state.findIndex(anecdote => anecdote.id === action.payload)
       state[index].votes++
     },
@@ -35,5 +35,12 @@ export const addAnecdote = (content) => {
   }
 }
 
-export const { castVote, appendAnecdote, setAnecdotes } = blogSlice.actions
+export const castVote = (anecdote) => {
+  return async dispatch => {
+    const data = await castVoteService(anecdote)
+    dispatch(upvote(data.id))
+  }
+}
+
+export const { upvote, appendAnecdote, setAnecdotes } = blogSlice.actions
 export default blogSlice.reducer
