@@ -30,7 +30,7 @@ const blogSlice = createSlice({
       state[index].votes++
     },
     addAnecdote(state, action) {
-      state.push(action.payload)
+      state.push(asObject(action.payload))
     }
   }
 })
