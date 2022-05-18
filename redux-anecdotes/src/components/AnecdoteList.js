@@ -3,8 +3,14 @@ import { castVote } from '../reducers/anecdoteReducer'
 import { notify } from '../reducers/notificationReducer'
 
 const AnecdoteList = () => {
-
-  const anecdotes = useSelector(state => state.anecdotes.concat([]).sort((a, b) => b.votes - a.votes))
+  const anecdotes = useSelector(state => {
+    const filter = state.filter
+    const filteredList = state.anecdotes.filter(anecdote => {
+      return anecdote.content.includes(filter)
+    })
+    filteredList.sort((a, b) => b.votes - a.votes)
+    return filteredList
+  })
   const dispatch = useDispatch()
   const vote = (id) => {
     dispatch(castVote(id))
@@ -12,7 +18,6 @@ const AnecdoteList = () => {
     setTimeout(() => dispatch(notify('')), 3000)
   }
   return (<>
-    <h2>Anecdotes</h2>
     {anecdotes.map(anecdote =>
       <div key={anecdote.id}>
         <div>
