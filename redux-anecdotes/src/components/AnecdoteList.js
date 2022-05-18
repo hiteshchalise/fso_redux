@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { castVote } from '../reducers/anecdoteReducer'
-import { notify } from '../reducers/notificationReducer'
+import { setNotification } from '../reducers/notificationReducer'
 
 const AnecdoteList = () => {
   const anecdotes = useSelector(state => {
@@ -14,8 +14,7 @@ const AnecdoteList = () => {
   const dispatch = useDispatch()
   const vote = async (anecdote) => {
     dispatch(castVote(anecdote))
-    dispatch(notify(`vote is casted for ${anecdote.id}`))
-    setTimeout(() => dispatch(notify('')), 3000)
+    dispatch(setNotification(`vote is casted for ${anecdote.content}`, 10))
   }
   return (<>
     {anecdotes.map(anecdote =>
