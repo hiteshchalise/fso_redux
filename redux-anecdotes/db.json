@@ -39,6 +39,11 @@
       "content": "This is a new anecdote.",
       "votes": 2,
       "id": "TuQLLjo"
+    },
+    {
+      "content": "This form now uses connect function to connect Form with dispatch from redux store.",
+      "votes": 1,
+      "id": "KQIj_dn"
     }
   ]
 }

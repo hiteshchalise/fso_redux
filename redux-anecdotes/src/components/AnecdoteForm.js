@@ -1,9 +1,8 @@
-import { useDispatch } from "react-redux"
+import { connect } from "react-redux"
 import { addAnecdote } from "../reducers/anecdoteReducer"
 import { setNotification } from "../reducers/notificationReducer"
-const AnecdoteForm = () => {
 
-  const dispatch = useDispatch()
+let AnecdoteForm = ({ dispatch }) => {
 
   const handleNewAnecdote = async (event) => {
     event.preventDefault()
@@ -25,5 +24,7 @@ const AnecdoteForm = () => {
     </>
   )
 }
+
+AnecdoteForm = connect()(AnecdoteForm)
 
 export default AnecdoteForm
