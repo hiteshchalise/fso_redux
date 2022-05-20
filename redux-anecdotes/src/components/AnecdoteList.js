@@ -14,7 +14,7 @@ const AnecdoteList = () => {
   const dispatch = useDispatch()
   const vote = async (anecdote) => {
     dispatch(castVote(anecdote))
-    dispatch(setNotification(`vote is casted for ${anecdote.content}`, 10))
+    dispatch(setNotification(`vote is casted for '${anecdote.content}'`, 10))
   }
   return (<>
     {anecdotes.map(anecdote =>
